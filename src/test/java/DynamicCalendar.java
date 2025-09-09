@@ -34,10 +34,8 @@ public class DynamicCalendar extends BaseTest {
                 break;
             }
         }
-
         // Switch back from iframe
         driver.switchTo().defaultContent();
-
         Thread.sleep(2000);
         driver.quit();
     }
