@@ -1,0 +1,32 @@
+name: Sync Local Changes
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:   # Allows manual trigger
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0   # Fetch full history
+
+      - name: Set up Git
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+
+      - name: Pull remote changes
+        run: |
+          git pull origin main --allow-unrelated-histories
+
+      - name: Push local changes
+        run: |
+          git add .
+          git commit -m "Auto-merge local changes [skip ci]" || echo "No changes to commit"
+          git push origin main
