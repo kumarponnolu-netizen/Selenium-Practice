@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Selenium Test Suite" parallel="false">
+    <listeners>
+        <listener class-name="listeners.TestListener"/>
+    </listeners>
+
+    <test name="AllTests">
+        <classes>
+            <class name="SendKeysExample"/>
+            <class name="DropdownExample"/>
+            <class name="DynamicElementsExample"/>
+            <class name="MultipleWindowsExample"/>
+            <class name="AlertsExample"/>
+            <class name="ScreenshotExample"/>
+            <class name="SendKeysExample"/>
+            <class name="DropdownExample"/>
+            <class name="DynamicElementsExample"/>
+            <class name="MultipleWindowsExample"/>
+            <class name="AlertsExample"/>
+            <class name="ScreenshotExample"/>
+        </classes>
+    </test>
+</suite>
