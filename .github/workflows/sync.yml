@@ -1,32 +1,33 @@
-name: Sync Local Changes
+name: sync
 
 on:
   push:
     branches:
       - main
-  workflow_dispatch:   # Allows manual trigger
+  workflow_dispatch:
+
+permissions:
+  contents: write   # 👈 gives GHA permission to push commits
 
 jobs:
   sync:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0   # Fetch full history
+          token: ${{ secrets.GITHUB_TOKEN }}  # use default token
 
       - name: Set up Git
         run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "actions@github.com"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Pull remote changes
-        run: |
-          git pull origin main --allow-unrelated-histories
+        run: git pull origin main --rebase
 
       - name: Push local changes
         run: |
           git add .
-          git commit -m "Auto-merge local changes [skip ci]" || echo "No changes to commit"
+          git commit -m "sync changes" || echo "No changes to commit"
           git push origin main
