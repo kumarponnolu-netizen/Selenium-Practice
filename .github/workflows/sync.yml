@@ -52,7 +52,7 @@ jobs:
           name: surefire-reports
           path: target/surefire-reports/**
 
-      # ✅ Upload Extent Reports (HTML report from test-output folder)
+
       - name: Upload Extent Reports
         uses: actions/upload-artifact@v3
         with:
